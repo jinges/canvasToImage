@@ -1,0 +1,23 @@
+{
+  "name": "drawtable",
+  "version": "1.0.0",
+  "description": "canas drawimage",
+  "main": "index.js",
+  "entry": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinges/canvasToImage.git"
+  },
+  "keywords": [
+    "canvas"
+  ],
+  "author": "fung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jinges/canvasToImage/issues"
+  },
+  "homepage": "https://github.com/jinges/canvasToImage#readme"
+}
