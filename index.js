@@ -1,5 +1,5 @@
 
-export default class drawTable {
+export default class DrawTable {
     constructor (title, reviceObject, titles, scoreList, baseColor) {
         this.title = title
         this.reviceObject = reviceObject
