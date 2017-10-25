@@ -1,10 +1,11 @@
 
 export default class Canvas {
-    constructor (title, reviceObject, titles, scoreList) {
+    constructor (title, reviceObject, titles, scoreList, baseColor) {
         this.title = title
         this.reviceObject = reviceObject
         this.titles = titles
         this.scoreList = scoreList
+        this.baseColor = baseColor
     }
 
     init () {
@@ -40,11 +41,11 @@ export default class Canvas {
     }
 
     pixelRatio (num) {
-        return num * this.ratio
+        return num  //* this.ratio
     }
 
     drawTitle (title, reviceObject) {
-        this.ctx.fillStyle = '#00ba8f'
+        this.ctx.fillStyle = this.baseColor
         this.ctx.fillRect(this.pixelRatio(10), this.pixelRatio(10), this.canvas.width - this.pixelRatio(20), this.pixelRatio(120))
         this.ctx.font = this.pixelRatio(28) + 'px Microsoft YaHei'
         this.ctx.textBaseline = 'bottom'
@@ -68,7 +69,7 @@ export default class Canvas {
             if (height < 22 * (rows + 1)) {
                 height = 22 * (rows + 1)
             }
-            _this.ctx.fillStyle = '#a1e2d3'
+            _this.ctx.fillStyle = '#bee9d3'
             _this.ctx.fillRect(_this.pixelRatio(10), _this.pixelRatio(120), _this.canvas.width - _this.pixelRatio(20), _this.pixelRatio(height))
         })
 
@@ -191,11 +192,6 @@ export default class Canvas {
         closeBtn.addEventListener('click', function () {
             document.body.lastElementChild.remove()
             document.body.className = ''
-
-            // let meta = document.createElement('meta')
-            // meta.setAttribute('name', 'viewport')
-            // meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no')
-            // document.head.appendChild(meta)
         }, true)
     }
 }

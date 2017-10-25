@@ -80,7 +80,6 @@
 		drawTable(canvas, ctx, height);
 		watermark(canvas, ctx, height);
 
-		convertCanvasToImage(canvas)
 	}
 
 	function drawTitle(canvas, ctx){
@@ -168,6 +167,7 @@
 		img.src = './girl.png';
 		img.onload = function (){
 			ctx.drawImage(img, canvas.width / 2, canvas.height / 2)
+			convertCanvasToImage(canvas)
 		}
 	}
 
