@@ -1,1 +1,1 @@
-module.export = require('./lib/drawtable')
+module.exports = require('./lib/drawtable')
