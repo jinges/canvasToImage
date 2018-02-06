@@ -1,6 +1,6 @@
 {
   "name": "drawtable",
-  "version": "1.1.5",
+  "version": "1.1.7",
   "description": "canvas drawimage",
   "main": "index.js",
   "entry": "index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jinges/canvasToImage.git"
+    "url": "git+https://github.com/jinges/cw-drawtable.git"
   },
   "keywords": [
     "canvas"
@@ -18,9 +18,9 @@
   "author": "fung",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jinges/canvasToImage/issues"
+    "url": "https://github.com/jinges/cw-drawtable/issues"
   },
-  "homepage": "https://github.com/jinges/canvasToImage#readme",
+  "homepage": "https://github.com/jinges/cw-drawtable#readme",
   "dependencies": {
     "babel-cli": "^6.26.0"
   },
