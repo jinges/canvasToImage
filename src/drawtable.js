@@ -6,6 +6,8 @@ export default class DrawTable {
         this.titles = titles
         this.scoreList = scoreList
         this.baseColor = baseColor
+
+        this.init();
     }
 
     init () {
@@ -24,6 +26,8 @@ export default class DrawTable {
         this.canvas.height = this.pixelRatio(data.length * 60)
         this.ctx.scale(ratio, ratio)
         this.titles = [...['序号', '姓名'], ...this.titles, ...['总分']]
+
+        this.drawFun();
     }
 
     drawFun (cb) {
