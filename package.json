@@ -1,7 +1,7 @@
 {
-  "name": "drawtable",
-  "version": "1.1.7",
-  "description": "canvas drawimage",
+  "name": "cw-drawtable",
+  "version": "1.1.8",
+  "description": "canvas ",
   "main": "index.js",
   "entry": "index.js",
   "scripts": {
