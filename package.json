@@ -21,10 +21,22 @@
     "url": "https://github.com/jinges/cw-drawtable/issues"
   },
   "homepage": "https://github.com/jinges/cw-drawtable#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-connect": "^5.5.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
+    "opn": "^5.2.0"
+  },
   "dependencies": {
     "babel-cli": "^6.26.0"
-  },
-  "devDependencies": {
-    "babel-preset-env": "^1.6.1"
   }
 }
