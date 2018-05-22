@@ -22,11 +22,9 @@ export default class DrawTable {
       this.ctx.backingStorePixelRatio || 1
     let ratio = devicePixelRatio / backingStoreRatio
     this.ratio = this.ratios ? ratio : 1
-    console.log(this.ratio)
-    this.canvas.width = this.pixelRatio((data[0].score.length + 3) * 100)
+    this.canvas.width = this.pixelRatio((data[0].submitList.length + 3) * 100)
     this.canvas.height = this.pixelRatio(data.length * 60)
     this.ctx.scale(ratio, ratio)
-    this.titles = [...['序号', '姓名'], ...this.titles, ...['总分']]
 
     this.drawFun();
   }
@@ -103,7 +101,6 @@ export default class DrawTable {
     let canvas = this.canvas
     let ctx = this.ctx
     let data = this.scoreList
-    ctx.font = this.pixelRatio(20) + 'px Microsoft YaHei'
     ctx.textBaseline = 'bottom'
     this.arraySortFun(data)
     for (var i = 0, len = data.length; i < len; i++) {
@@ -112,21 +109,39 @@ export default class DrawTable {
         ctx.fillStyle = '#f8f8f8'
         ctx.fillRect(this.pixelRatio(10), this.pixelRatio(top), canvas.width - this.pixelRatio(20), this.pixelRatio(60))
       }
+      ctx.font = this.pixelRatio(20) + 'px Microsoft YaHei'
       ctx.fillStyle = '#000'
       ctx.textAlign = 'center'
       ctx.fillText((i + 1), this.pixelRatio(50), this.pixelRatio(top + 46))
       ctx.fillText(data[i].name, this.pixelRatio(100 + 50), this.pixelRatio(top + 46), this.pixelRatio(100))
-      let score = data[i].score
+      let score = data[i].submitList
       var scoreLen = 0
       score.forEach(function (item, key) {
+        ctx.font = _this.pixelRatio(20) + 'px Microsoft YaHei'
         ctx.fillStyle = '#000'
         scoreLen++
-        if (item == null) {
+        let text = ''
+        if (!item.isSubmit) {
           ctx.fillStyle = '#f00'
-          item = '未提交'
+          text = '未提交'
+          ctx.fillText(text, _this.pixelRatio(100 * (key + 2) + 50), _this.pixelRatio(top + 46), _this.pixelRatio(100))
+        } else if (item.moduleId == 66) {
+          if (!item.trueCount && !item.falseCount) {
+            text = '已提交';
+            ctx.fillText(text, _this.pixelRatio(100 * (key + 2) + 50), _this.pixelRatio(top + 46), _this.pixelRatio(100))
+          } else {
+            ctx.font = _this.pixelRatio(14) + 'px Microsoft YaHei'
+            text = ` ${item.trueCount}√ | ${item.falseCount}× `
+            ctx.fillText(text, _this.pixelRatio(100 * (key + 2) + 50), _this.pixelRatio(top + 46), _this.pixelRatio(100))
+            // ctx.fillText(`正确: ${item.trueCount}个`, _this.pixelRatio(100 * (key + 2) + 50), _this.pixelRatio(top + 30), _this.pixelRatio(100))
+            // ctx.fillText(`错误: ${item.falseCount}个`, _this.pixelRatio(100 * (key + 2) + 50), _this.pixelRatio(top + 50), _this.pixelRatio(100))
+          }
+        } else {
+          text = item.actualScore
+          ctx.fillText(text, _this.pixelRatio(100 * (key + 2) + 50), _this.pixelRatio(top + 46), _this.pixelRatio(100))
         }
-        ctx.fillText(item, _this.pixelRatio(100 * (key + 2) + 50), _this.pixelRatio(top + 46), _this.pixelRatio(100))
       })
+      ctx.font = _this.pixelRatio(20) + 'px Microsoft YaHei'
       ctx.fillStyle = '#000'
       ctx.fillText(data[i].totalScore ? data[i].totalScore : 0, this.pixelRatio(100 * (scoreLen + 2) + 50), this.pixelRatio(top + 46))
     }

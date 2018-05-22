@@ -4,8 +4,16 @@
 <head>
   <title>canvas</title>
   <style>
-    *{margin: 0;padding: 0; border-width: 0;}
-    img{width: 100%; height: 100%;}
+    * {
+      margin: 0;
+      padding: 0;
+      border-width: 0;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   </style>
 </head>
 
@@ -13,47 +21,99 @@
   <canvas id="tutorial" width="150" height="150"></canvas>
   <script src="./../lib/drawtable.js"></script>
   <script type="text/javascript">
- var data = [
-  {
-    "name": "新建学生2",
-    "totalScore": 0,
-    "submitList": [
-      {
-        "moduleId": 66,
-        "actualScore": 0,
-        "isSubmit": true,
-        "trueCount": 0,
-        "falseCount": 2
-      },
-      {
-        "moduleId": 66,
-        "actualScore": 0,
-        "isSubmit": true,
-        "trueCount": 0,
-        "falseCount": 0
-      },
-      {
-        "moduleId": 66,
-        "actualScore": 0,
-        "isSubmit": false,
-        "trueCount": 0,
-        "falseCount": 0
-      },
-      {
-        "moduleId": 66,
-        "actualScore": 0,
-        "isSubmit": false,
-        "trueCount": 0,
-        "falseCount": 0
-      }
-    ]
-  }
-]
+ var data = [{ "name": "新建学生2", "totalScore": 900, "submitList": [{ "moduleId": 66, "actualScore": 40, "isSubmit": true,
+"trueCount": 0, "falseCount": 2 }, { "moduleId": 66, "actualScore": 0, "isSubmit": true, "trueCount": 10, "falseCount": 2
+}, { "moduleId": 60, "actualScore": 0, "isSubmit": false, "trueCount": 0, "falseCount": 0 }, { "moduleId": 66, "actualScore":
+0, "isSubmit": true, "trueCount": 10, "falseCount": 0 } ] },{ "name": "新建学生2", "totalScore": 900, "submitList": [{ "moduleId":
+66, "actualScore": 40, "isSubmit": true, "trueCount": 0, "falseCount": 2 }, { "moduleId": 66, "actualScore": 0, "isSubmit":
+true, "trueCount": 10, "falseCount": 2 }, { "moduleId": 60, "actualScore": 0, "isSubmit": false, "trueCount": 0, "falseCount":
+0 }, { "moduleId": 66, "actualScore": 0, "isSubmit": false, "trueCount": 0, "falseCount": 0 } ] },{ "name": "新建学生2", "totalScore":
+900, "submitList": [{ "moduleId": 66, "actualScore": 40, "isSubmit": true, "trueCount": 0, "falseCount": 2 }, { "moduleId":
+66, "actualScore": 0, "isSubmit": true, "trueCount": 10, "falseCount": 2 }, { "moduleId": 60, "actualScore": 0, "isSubmit":
+false, "trueCount": 0, "falseCount": 0 }, { "moduleId": 66, "actualScore": 0, "isSubmit": false, "trueCount": 0, "falseCount":
+0 } ] },{ "name": "新建学生2", "totalScore": 900, "submitList": [{ "moduleId": 66, "actualScore": 40, "isSubmit": true, "trueCount":
+0, "falseCount": 2 }, { "moduleId": 66, "actualScore": 0, "isSubmit": true, "trueCount": 10, "falseCount": 2 }, { "moduleId":
+60, "actualScore": 0, "isSubmit": false, "trueCount": 0, "falseCount": 0 }, { "moduleId": 66, "actualScore": 0, "isSubmit":
+false, "trueCount": 0, "falseCount": 0 } ] },{
+      "name": "新建学生2",
+      "totalScore": 900,
+      "submitList": [{
+          "moduleId": 6,
+          "actualScore": 40,
+          "isSubmit": true,
+          "trueCount": 0,
+          "falseCount": 2
+        },
+        {
+          "moduleId": 6,
+          "actualScore": 8,
+          "isSubmit": true,
+          "trueCount": 10,
+          "falseCount": 2
+        },
+        {
+          "moduleId": 60,
+          "actualScore": 0,
+          "isSubmit": false,
+          "trueCount": 0,
+          "falseCount": 0
+        },
+        {
+          "moduleId": 66,
+          "actualScore": 0,
+          "isSubmit": false,
+          "trueCount": 0,
+          "falseCount": 0
+        }
+      ]
+ },{ "name": "新建学生2", "totalScore": 900, "submitList": [{ "moduleId": 66, "actualScore": 40, "isSubmit": true, "trueCount":
+0, "falseCount": 2 }, { "moduleId": 6, "actualScore": 200, "isSubmit": true, "trueCount": 10, "falseCount": 2 }, { "moduleId":
+60, "actualScore": 0, "isSubmit": false, "trueCount": 0, "falseCount": 0 }, { "moduleId": 66, "actualScore": 0, "isSubmit":
+false, "trueCount": 0, "falseCount": 0 } ] },{
+      "name": "新建学生2",
+      "totalScore": 900,
+ "submitList": [ { "moduleId": 60, "actualScore": 40, "isSubmit": true, "trueCount": 10, "falseCount": 2 },{
+          "moduleId": 66,
+          "actualScore": 40,
+          "isSubmit": true,
+          "trueCount": 0,
+          "falseCount": 2
+        },
+        {
+          "moduleId": 60,
+          "actualScore": 0,
+          "isSubmit": false,
+          "trueCount": 0,
+          "falseCount": 0
+        },
+        {
+          "moduleId": 66,
+          "actualScore": 0,
+          "isSubmit": false,
+          "trueCount": 0,
+          "falseCount": 0
+        }
+      ]
+ },{ "name": "新建学生2", "totalScore": 900, "submitList": [{ "moduleId": 66, "actualScore": 40, "isSubmit": true, "trueCount":
+0, "falseCount": 2 }, { "moduleId": 60, "actualScore": 18, "isSubmit": true, "trueCount": 10, "falseCount": 2 }, { "moduleId":
+60, "actualScore": 0, "isSubmit": false, "trueCount": 0, "falseCount": 0 }, { "moduleId": 66, "actualScore": 0, "isSubmit":
+false, "trueCount": 0, "falseCount": 0 } ] },{ "name": "新建学生2", "totalScore": 900, "submitList": [{ "moduleId": 66, "actualScore":
+40, "isSubmit": true, "trueCount": 0, "falseCount": 2 }, { "moduleId": 60, "actualScore": 90, "isSubmit": true, "trueCount":
+10, "falseCount": 2 }, { "moduleId": 60, "actualScore": 0, "isSubmit": false, "trueCount": 0, "falseCount": 0 }, { "moduleId":
+66, "actualScore": 0, "isSubmit": false, "trueCount": 0, "falseCount": 0 } ] },{ "name": "新建学生2", "totalScore": 900, "submitList":
+[{ "moduleId": 66, "actualScore": 40, "isSubmit": true, "trueCount": 0, "falseCount": 2 }, { "moduleId": 66, "actualScore":
+0, "isSubmit": true, "trueCount": 10, "falseCount": 2 }, { "moduleId": 60, "actualScore": 0, "isSubmit": false, "trueCount":
+0, "falseCount": 0 }, { "moduleId": 66, "actualScore": 0, "isSubmit": false, "trueCount": 0, "falseCount": 0 } ] },{ "name":
+"新建学生2", "totalScore": 900, "submitList": [{ "moduleId": 66, "actualScore": 40, "isSubmit": true, "trueCount": 0, "falseCount":
+2 }, { "moduleId": 66, "actualScore": 0, "isSubmit": true, "trueCount": 10, "falseCount": 2 }, { "moduleId": 60, "actualScore":
+0, "isSubmit": false, "trueCount": 0, "falseCount": 0 }, { "moduleId": 66, "actualScore": 0, "isSubmit": false, "trueCount":
+0, "falseCount": 0 } ] },]
     var title = '英语作业英语作业英语作英语作业英语作业英';
     var reviceObject = '三年级二班';
-    var tableHeaderData = ['序号', '姓名', '试卷一试卷一试卷一试卷一试卷一', '试卷2', 'Section A, 1b-新目标八年级上学期Unit 1 Where did go on vacation?', '试卷4', '试卷5', '试卷6', '总分']
-     new DrawTable.default(title, reviceObject, tableHeaderData, data, '#fff0')
-
+    var tableHeaderData = ['试卷一试卷一试卷一试卷一试卷一', '试卷2',
+      'Section A, 1b-新目标八年级上学期Unit 1 Where did go on vacation?', '试卷4', '总分'
+    ]
+ new DrawTable.default(title, reviceObject, [...['序号', '姓名'], ...tableHeaderData, ...['总分']], data, '#fff0', true)
   </script>
 </body>
 
