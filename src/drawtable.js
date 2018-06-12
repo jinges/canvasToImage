@@ -39,7 +39,6 @@ export default class DrawTable {
     this.watermark()
     this.convertCanvasToImage(cb)
     this.closeImagePanel()
-    this.removeLoading()
   }
 
   pixelRatio(num) {
@@ -195,6 +194,7 @@ export default class DrawTable {
 
   addLoading() {
     let load = document.querySelector('#loading')
+    console.log(new Date())
     if(load) {
       load.style.display = 'block'
     }
@@ -202,6 +202,7 @@ export default class DrawTable {
 
   removeLoading(){
     let load = document.querySelector('#loading')
+    console.log(new Date())
     if (load) {
       load.style.display = 'none'
     }
@@ -225,7 +226,8 @@ export default class DrawTable {
     }
     div.appendChild(image)
     document.body.appendChild(div)
-    document.body.style.cssText = "height: 0px;"
+    document.body.style.cssText = "height: 0px; overflow: hidden;"
+    this.removeLoading()
   }
 
   closeImagePanel() {
