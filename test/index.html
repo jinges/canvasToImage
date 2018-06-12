@@ -12,14 +12,13 @@
 
     img {
       width: 100%;
-      height: 100%;
     }
   </style>
 </head>
 
 <body>
   <canvas id="tutorial" width="150" height="150"></canvas>
-  <script src="./../lib/drawtable.js"></script>
+<script src="./../lib/drawtable.js?r=11"></script>
   <script type="text/javascript">
  var data = [{ "name": "新建学生2", "totalScore": 900, "submitList": [{ "moduleId": 66, "actualScore": 40, "isSubmit": true,
 "trueCount": 0, "falseCount": 2 }, { "moduleId": 66, "actualScore": 0, "isSubmit": true, "trueCount": 10, "falseCount": 2
@@ -113,7 +112,8 @@ false, "trueCount": 0, "falseCount": 0 } ] },{ "name": "新建学生2", "totalSc
     var tableHeaderData = ['试卷一试卷一试卷一试卷一试卷一', '试卷2',
       'Section A, 1b-新目标八年级上学期Unit 1 Where did go on vacation?', '试卷4', '总分'
     ]
- new DrawTable.default(title, reviceObject, [...['序号', '姓名'], ...tableHeaderData, ...['总分']], data, '#fff0', true)
+ var canvas = new DrawTable.default(title, reviceObject, [...['序号', '姓名'], ...tableHeaderData, ...['总分']], data, '#000', true)
+ canvas.drawFun()
   </script>
 </body>
 

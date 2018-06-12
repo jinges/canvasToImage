@@ -25,8 +25,6 @@ export default class DrawTable {
     this.canvas.width = this.pixelRatio((data[0].submitList.length + 3) * 100)
     this.canvas.height = this.pixelRatio(data.length * 60)
     this.ctx.scale(ratio, ratio)
-
-    this.drawFun();
   }
 
   drawFun(cb) {
@@ -34,9 +32,9 @@ export default class DrawTable {
     this.canvas.height = this.canvas.height + this.pixelRatio(height + 100 + 40)
     this.ctx.fillStyle = '#fff'
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
-
-    this.drawTitle(this.title, this.reviceObject)
+    
     this.drawTableHeader()
+    this.drawTitle()
     this.drawTable(height)
     this.watermark()
     this.convertCanvasToImage(cb)
@@ -47,17 +45,17 @@ export default class DrawTable {
     return num * this.ratio
   }
 
-  drawTitle(title, reviceObject) {
+  drawTitle() {
     this.ctx.fillStyle = this.baseColor
     this.ctx.fillRect(this.pixelRatio(10), this.pixelRatio(10), this.canvas.width - this.pixelRatio(20), this.pixelRatio(120))
     this.ctx.font = this.pixelRatio(28) + 'px Microsoft YaHei'
     this.ctx.textBaseline = 'bottom'
     this.ctx.fillStyle = '#fff'
     this.ctx.textAlign = 'center'
-    this.ctx.fillText(title, this.canvas.width / 2, this.pixelRatio(60))
+    this.ctx.fillText(this.title, this.canvas.width / 2, this.pixelRatio(60))
 
     this.ctx.font = this.pixelRatio(22) + 'px Microsoft YaHei'
-    this.ctx.fillText(reviceObject, (this.canvas.width - this.pixelRatio(20)) / 2, this.pixelRatio(100))
+    this.ctx.fillText(this.reviceObject, (this.canvas.width - this.pixelRatio(20)) / 2, this.pixelRatio(100))
   }
 
   drawTableHeader() {
@@ -172,8 +170,8 @@ export default class DrawTable {
   watermark() {
     let canvas = this.canvas
     let ctx = this.ctx
-    let width = this.canvas.width + 400
-    let height = this.canvas.height + 200
+    let width = canvas.width + 400
+    let height = canvas.height + 200
     let title = '习习向上 ' + new Date().getFullYear()
 
     ctx.font = this.pixelRatio(40) + 'px Microsoft YaHei'
@@ -198,13 +196,15 @@ export default class DrawTable {
     var image = new Image()
     let sHeight = window.screen.height
     let sWidth = window.screen.width
-    let imgHeight = sWidth * canvas.height / canvas.width
+    // let imgHeight = sWidth * canvas.height / canvas.width
+    // console.log(canvas.width, canvas.height, sWidth, sHeight)
 
     let div = document.createElement('div')
-    div.className = 'canvasImg'
+    div.style = 'position: absolute; width: 100%; height: 100%; left: 0; top: 0;'
     div.setAttribute('id', 'canvasImg')
 
     image.src = canvas.toDataURL('image/jpeg', 1)
+    image.style = 'position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%)'
     // image.className = 'canvasImg'
     div.appendChild(image)
     // let span = document.createElement('span')
@@ -212,18 +212,18 @@ export default class DrawTable {
     // span.className = 'close'
     // div.appendChild(span)
     document.body.appendChild(div)
-    document.body.className = 'fixdBody'
-
-    if (imgHeight < sHeight) {
-      let h = (sHeight - imgHeight) / 2
-      document.querySelector('.canvasImg').firstElementChild.style.marginTop = h + 'px'
-    }
+    // document.body.className = 'fixdBody'
+    // const imgHeight = image.height;
+    // if (imgHeight < sHeight) {
+    //   let h = (sHeight - imgHeight) / 2
+    //   document.querySelector('.canvasImg').firstElementChild.style.marginTop = h + 'px'
+    // }
   }
 
   closeImagePanel() {
-    let closeBtn = document.getElementById('canvasImg')
-    closeBtn.addEventListener('click', function () {
-      document.body.lastElementChild.remove()
+    let img = document.getElementById('canvasImg')
+    img.addEventListener('click', function () {
+      img.remove()
       document.body.className = ''
     }, true)
   }
