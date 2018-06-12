@@ -201,7 +201,7 @@ export default class DrawTable {
     let imgHeight = sWidth * canvas.height / canvas.width
 
     let div = document.createElement('div')
-    div.style = 'position: fixed; width: 100%; height: 100%; left: 0; top: 0; overflow-y: auto;background: #000;'
+    div.style.cssText = 'position: fixed; width: 100%; height: 100%; left: 0; top: 0; overflow-y: auto;background: #000;'
     div.setAttribute('id', 'canvasImg')
 
     image.src = canvas.toDataURL('image/jpeg', 1)
