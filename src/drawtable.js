@@ -32,13 +32,14 @@ export default class DrawTable {
     this.canvas.height = this.canvas.height + this.pixelRatio(height + 100 + 40)
     this.ctx.fillStyle = '#fff'
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
-    
+    this.addLoading()
     this.drawTableHeader()
     this.drawTitle()
     this.drawTable(height)
     this.watermark()
     this.convertCanvasToImage(cb)
     this.closeImagePanel()
+    this.removeLoading()
   }
 
   pixelRatio(num) {
@@ -67,8 +68,8 @@ export default class DrawTable {
     _this.ctx.textAlign = 'center'
     tableHeaderData.forEach(function (item, i) {
       var rows = Math.ceil(item.length / num)
-      if (height < 22 * (rows + 1)) {
-        height = 22 * (rows + 1)
+      if (height < 24 * (rows + 1)) {
+        height = 24 * (rows + 1)
       }
       _this.ctx.fillStyle = '#bee9d3'
       _this.ctx.fillRect(_this.pixelRatio(10), _this.pixelRatio(120), _this.canvas.width - _this.pixelRatio(20), _this.pixelRatio(height))
@@ -80,10 +81,10 @@ export default class DrawTable {
 
       if (rows > 1) {
         _this.ctx.font = _this.pixelRatio(16) + 'px Microsoft YaHei'
-        _this.ctx.textBaseline = 'bottom'
+        _this.ctx.textBaseline = 'middle'
         for (var j = 0; j < rows; j++) {
           _this.ctx.fillStyle = '#000'
-          _this.ctx.fillText(item.substr(num * j, 8), _this.pixelRatio(100 * i + 50), _this.pixelRatio(150 + j * 22), _this.pixelRatio(100))
+          _this.ctx.fillText(item.substr(num * j, 8), _this.pixelRatio(100 * i + 50), _this.pixelRatio(150 + j * 24), _this.pixelRatio(100))
         }
       } else {
         _this.ctx.fillStyle = '#000'
@@ -190,7 +191,20 @@ export default class DrawTable {
         ctx.fillText(title, this.pixelRatio(w), this.pixelRatio(h));
       }
     }
+  }
 
+  addLoading() {
+    let load = document.querySelector('#loading')
+    if(load) {
+      load.style.display = 'block'
+    }
+  }
+
+  removeLoading(){
+    let load = document.querySelector('#loading')
+    if (load) {
+      load.style.display = 'none'
+    }
   }
 
   convertCanvasToImage(cb) {
@@ -201,7 +215,7 @@ export default class DrawTable {
     let imgHeight = sWidth * canvas.height / canvas.width
 
     let div = document.createElement('div')
-    div.style.cssText = 'position: fixed; width: 100%; height: 100%; left: 0; top: 0; overflow-y: auto;background: #000;'
+    div.style.cssText = 'position: fixed; width: 100%; height: 100%; left: 0; top: 0; overflow-y: auto;background: #fff;'
     div.setAttribute('id', 'canvasImg')
 
     image.src = canvas.toDataURL('image/jpeg', 1)
@@ -210,15 +224,15 @@ export default class DrawTable {
       image.style.marginTop = h + 'px'
     }
     div.appendChild(image)
-
     document.body.appendChild(div)
+    document.body.style.cssText = "height: 0px;"
   }
 
   closeImagePanel() {
     let img = document.getElementById('canvasImg')
     img.addEventListener('click', function () {
       img.remove()
-      document.body.className = ''
+      document.body.removeAttribute('style')
     }, true)
   }
 }
