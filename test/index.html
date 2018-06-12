@@ -2,7 +2,34 @@
 <html>
 
 <head>
-  <title>canvas</title>
+<title>canvas</title>
+<meta name="keywords" content="keywords" />
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" name="viewport">
+<!-- 是否启用 WebApp 全屏模式 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<!-- 添加到主屏后的标题（iOS 6 新增） -->
+<meta name="apple-mobile-web-app-title" content="">
+<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+<meta name="format-detection" content="telephone=no, email=no">
+<!-- 启用360浏览器的极速模式(webkit) -->
+<meta name="renderer" content="webkit">
+<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+<meta name="HandheldFriendly" content="true">
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
   <style>
     * {
       margin: 0;
@@ -17,7 +44,7 @@
 </head>
 
 <body>
-  <canvas id="tutorial" width="150" height="150"></canvas>
+  <canvas id="tutorial"></canvas>
 <script src="./../lib/drawtable.js?r=11"></script>
   <script type="text/javascript">
  var data = [{ "name": "新建学生2", "totalScore": 900, "submitList": [{ "moduleId": 66, "actualScore": 40, "isSubmit": true,
@@ -112,7 +139,7 @@ false, "trueCount": 0, "falseCount": 0 } ] },{ "name": "新建学生2", "totalSc
     var tableHeaderData = ['试卷一试卷一试卷一试卷一试卷一', '试卷2',
       'Section A, 1b-新目标八年级上学期Unit 1 Where did go on vacation?', '试卷4', '总分'
     ]
- var canvas = new DrawTable.default(title, reviceObject, [...['序号', '姓名'], ...tableHeaderData, ...['总分']], data, '#000', true)
+ var canvas = new DrawTable.default(title, reviceObject, [...['序号', '姓名'], ...tableHeaderData, ...['总分']], data, '#000', false)
  canvas.drawFun()
   </script>
 </body>

@@ -105,8 +105,10 @@ export default class DrawTable {
       var top = 60 * i + 120 + height
       if (i % 2 === 0) {
         ctx.fillStyle = '#f8f8f8'
-        ctx.fillRect(this.pixelRatio(10), this.pixelRatio(top), canvas.width - this.pixelRatio(20), this.pixelRatio(60))
+      } else {
+        ctx.fillStyle = '#fffffa'
       }
+      ctx.fillRect(this.pixelRatio(10), this.pixelRatio(top), canvas.width - this.pixelRatio(20), this.pixelRatio(60))
       ctx.font = this.pixelRatio(20) + 'px Microsoft YaHei'
       ctx.fillStyle = '#000'
       ctx.textAlign = 'center'
@@ -196,28 +198,20 @@ export default class DrawTable {
     var image = new Image()
     let sHeight = window.screen.height
     let sWidth = window.screen.width
-    // let imgHeight = sWidth * canvas.height / canvas.width
-    // console.log(canvas.width, canvas.height, sWidth, sHeight)
+    let imgHeight = sWidth * canvas.height / canvas.width
 
     let div = document.createElement('div')
-    div.style = 'position: absolute; width: 100%; height: 100%; left: 0; top: 0;'
+    div.style = 'position: fixed; width: 100%; height: 100%; left: 0; top: 0; overflow-y: auto;background: #000;'
     div.setAttribute('id', 'canvasImg')
 
     image.src = canvas.toDataURL('image/jpeg', 1)
-    image.style = 'position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%)'
-    // image.className = 'canvasImg'
+    if (imgHeight < sHeight) {
+      let h = (sHeight - imgHeight) / 2
+      image.style.marginTop = h + 'px'
+    }
     div.appendChild(image)
-    // let span = document.createElement('span')
-    // span.innerHTML = '×'
-    // span.className = 'close'
-    // div.appendChild(span)
+
     document.body.appendChild(div)
-    // document.body.className = 'fixdBody'
-    // const imgHeight = image.height;
-    // if (imgHeight < sHeight) {
-    //   let h = (sHeight - imgHeight) / 2
-    //   document.querySelector('.canvasImg').firstElementChild.style.marginTop = h + 'px'
-    // }
   }
 
   closeImagePanel() {
