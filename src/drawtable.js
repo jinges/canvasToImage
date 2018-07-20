@@ -125,17 +125,8 @@ export default class DrawTable {
           ctx.fillStyle = '#f00'
           text = '未提交'
           ctx.fillText(text, _this.pixelRatio(100 * (key + 2) + 50), _this.pixelRatio(top + 46), _this.pixelRatio(100))
-        } else if (item.moduleId == 66) {
-          if (!item.trueCount && !item.falseCount) {
-            text = '已提交';
-            ctx.fillText(text, _this.pixelRatio(100 * (key + 2) + 50), _this.pixelRatio(top + 46), _this.pixelRatio(100))
-          } else {
-            ctx.font = _this.pixelRatio(14) + 'px Microsoft YaHei'
-            text = ` ${item.trueCount}√ | ${item.falseCount}× `
-            ctx.fillText(text, _this.pixelRatio(100 * (key + 2) + 50), _this.pixelRatio(top + 46), _this.pixelRatio(100))
-            // ctx.fillText(`正确: ${item.trueCount}个`, _this.pixelRatio(100 * (key + 2) + 50), _this.pixelRatio(top + 30), _this.pixelRatio(100))
-            // ctx.fillText(`错误: ${item.falseCount}个`, _this.pixelRatio(100 * (key + 2) + 50), _this.pixelRatio(top + 50), _this.pixelRatio(100))
-          }
+        } else if (item.moduleId == 66 && !item.hasQuestion) {
+          ctx.fillText('已提交', _this.pixelRatio(100 * (key + 2) + 50), _this.pixelRatio(top + 46), _this.pixelRatio(100))
         } else {
           text = item.actualScore
           ctx.fillText(text, _this.pixelRatio(100 * (key + 2) + 50), _this.pixelRatio(top + 46), _this.pixelRatio(100))
@@ -149,9 +140,9 @@ export default class DrawTable {
     ctx.strokeStyle = '#f8f8f8'
     ctx.lineWidth = this.pixelRatio(1)
     ctx.strokeRect(this.pixelRatio(10),
-    this.pixelRatio(120 + height),
-    canvas.width - this.pixelRatio(20),
-    canvas.height - this.pixelRatio(20 + 120 + height))
+      this.pixelRatio(120 + height),
+      canvas.width - this.pixelRatio(20),
+      canvas.height - this.pixelRatio(20 + 120 + height))
     ctx.save()
   }
 
@@ -185,8 +176,8 @@ export default class DrawTable {
     ctx.translate(width * -0.5, height * -0.5)
 
     for (let h = 0; h < height; h += 200) {
-      let w = h % 400 == 0 ? 200: 0;
-      for (; w < width; w+=400) {
+      let w = h % 400 == 0 ? 200 : 0;
+      for (; w < width; w += 400) {
         ctx.fillText(title, this.pixelRatio(w), this.pixelRatio(h));
       }
     }
@@ -195,12 +186,12 @@ export default class DrawTable {
   addLoading() {
     let load = document.querySelector('#loading')
     console.log(new Date())
-    if(load) {
+    if (load) {
       load.style.display = 'block'
     }
   }
 
-  removeLoading(){
+  removeLoading() {
     let load = document.querySelector('#loading')
     console.log(new Date())
     if (load) {
