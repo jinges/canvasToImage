@@ -1,6 +1,6 @@
 {
   "name": "cw-drawtable",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "canvas ",
   "main": "index.js",
   "entry": "index.js",

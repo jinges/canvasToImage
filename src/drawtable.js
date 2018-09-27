@@ -201,8 +201,8 @@ export default class DrawTable {
   convertCanvasToImage(cb) {
     let canvas = this.canvas;
     let URL = canvas.toDataURL('image/jpeg', 1);
-
     cb(URL);
+    removeLoading()
   }
 
   closeImagePanel() {
