@@ -32,7 +32,6 @@ export default class DrawTable {
     this.canvas.height = this.canvas.height + this.pixelRatio(height + 100 + 40)
     this.ctx.fillStyle = '#fff'
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
-    this.addLoading()
     this.drawTableHeader()
     this.drawTitle()
     this.drawTable(height)
@@ -182,34 +181,9 @@ export default class DrawTable {
     }
   }
 
-  addLoading() {
-    let load = document.querySelector('#loading')
-    console.log(new Date())
-    if (load) {
-      load.style.display = 'block'
-    }
-  }
-
-  removeLoading() {
-    let load = document.querySelector('#loading')
-    console.log(new Date())
-    if (load) {
-      load.style.display = 'none'
-    }
-  }
-
   convertCanvasToImage(cb) {
     let canvas = this.canvas;
     let URL = canvas.toDataURL('image/jpeg', 1);
     cb(URL);
-    removeLoading()
-  }
-
-  closeImagePanel() {
-    let img = document.getElementById('canvasImg')
-    img.addEventListener('click', function () {
-      img.remove()
-      document.body.removeAttribute('style')
-    }, true)
   }
 }
