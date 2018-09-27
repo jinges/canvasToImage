@@ -1,11 +1,11 @@
 export default class DrawTable {
-  constructor(title, reviceObject, titles, scoreList, baseColor, ratios) {
+  constructor(title, reviceObject, titles, scoreList, baseColor, ratios = false) {
     this.title = title
     this.reviceObject = reviceObject
     this.titles = titles
     this.scoreList = scoreList
     this.baseColor = baseColor
-    this.ratios = ratios || false;
+    this.ratios = ratios;
 
     this.init();
   }
@@ -38,7 +38,6 @@ export default class DrawTable {
     this.drawTable(height)
     this.watermark()
     this.convertCanvasToImage(cb)
-    this.closeImagePanel()
   }
 
   pixelRatio(num) {
@@ -200,25 +199,10 @@ export default class DrawTable {
   }
 
   convertCanvasToImage(cb) {
-    let canvas = this.canvas
-    var image = new Image()
-    let sHeight = window.screen.height
-    let sWidth = window.screen.width
-    let imgHeight = sWidth * canvas.height / canvas.width
+    let canvas = this.canvas;
+    let URL = canvas.toDataURL('image/jpeg', 1);
 
-    let div = document.createElement('div')
-    div.style.cssText = 'position: fixed; width: 100%; height: 100%; left: 0; top: 0; overflow-y: auto;background: #fff;'
-    div.setAttribute('id', 'canvasImg')
-
-    image.src = canvas.toDataURL('image/jpeg', 1)
-    if (imgHeight < sHeight) {
-      let h = (sHeight - imgHeight) / 2
-      image.style.marginTop = h + 'px'
-    }
-    div.appendChild(image)
-    document.body.appendChild(div)
-    document.body.style.cssText = "height: 0px; overflow: hidden;"
-    this.removeLoading()
+    cb(URL);
   }
 
   closeImagePanel() {
