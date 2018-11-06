@@ -2609,10 +2609,11 @@
       }]
     var title = '英语作业英语作业英语作英语作业英语作业英';
     var reviceObject = '三年级二班';
-    var tableHeaderData = ['试卷一试卷一试卷一试卷一试卷一', '试卷2',
-      'Section A, 1b-新目标八年级上学期Unit 1 Where did go on vacation?', '试卷4', '总分'
+var tableHeaderData = ['试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一试卷一',
+'试卷2',
+      'Section A, 1b-新目标八年级上学期Unit 1 Where did go on vacation?', '试卷4'
     ]
-    var canvas = new DrawTable.default(title, reviceObject, [...['序号', '姓名'], ...tableHeaderData, ...['总分']], data,
+    var canvas = new DrawTable.default(title, reviceObject, tableHeaderData, data,
       '#000', false)
     var imgBox = document.querySelector('#img-box');
     canvas.drawFun(function(url){

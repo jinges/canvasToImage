@@ -45,7 +45,7 @@ export default class DrawTable {
 
   drawTitle() {
     this.ctx.fillStyle = this.baseColor
-    this.ctx.fillRect(this.pixelRatio(10), this.pixelRatio(10), this.canvas.width - this.pixelRatio(20), this.pixelRatio(120))
+    this.ctx.fillRect(0, 0, this.canvas.width, this.pixelRatio(120))
     this.ctx.font = this.pixelRatio(28) + 'px Microsoft YaHei'
     this.ctx.textBaseline = 'bottom'
     this.ctx.fillStyle = '#fff'
@@ -56,40 +56,34 @@ export default class DrawTable {
     this.ctx.fillText(this.reviceObject, (this.canvas.width - this.pixelRatio(20)) / 2, this.pixelRatio(100))
   }
 
-  drawTableHeader() {
+  drawTableHeader(){
     let _this = this
     let tableHeaderData = this.titles
-    let height = 0
-    var num = 8
-    _this.ctx.textBaseline = 'bottom'
-    _this.ctx.textAlign = 'center'
-    tableHeaderData.forEach(function (item, i) {
-      var rows = Math.ceil(item.length / num)
-      if (height < 24 * (rows + 1)) {
-        height = 24 * (rows + 1)
-      }
-      _this.ctx.fillStyle = '#bee9d3'
-      _this.ctx.fillRect(_this.pixelRatio(10), _this.pixelRatio(120), _this.canvas.width - _this.pixelRatio(20), _this.pixelRatio(height))
+    let height = 40
+    let newTitle = []
+    let ctx = this.ctx
+    ctx.textAlign = 'left'
+    ctx.font = _this.pixelRatio(22) + 'px Microsoft YaHei'
+    ctx.textBaseline = 'top'
+    tableHeaderData.forEach((item, index) => {
+      let marginHeight = 120 + height * index
+      ctx.fillStyle = '#bee9d3'
+      ctx.fillRect(0, _this.pixelRatio(marginHeight), _this.canvas.width, _this.pixelRatio(height))
+      ctx.fillStyle = '#000'
+      let title = `作业${index + 1}`
+      ctx.fillText(title +': '+ item, _this.pixelRatio(10), _this.pixelRatio(marginHeight + 6))
+      newTitle.push(title)
+    })
+    let newHeaderData = [...['序号', '姓名'], ...newTitle, ...['总分']]
+    let TableMarginTop = tableHeaderData.length * height + 120
+    ctx.fillStyle = '#bee2d9'
+    ctx.fillRect(0, _this.pixelRatio(TableMarginTop), _this.canvas.width, _this.pixelRatio(60))
+    newHeaderData.forEach((item, index) => {
+      ctx.fillStyle = '#000'
+      ctx.fillText(item, _this.pixelRatio(100 * index + 20), _this.pixelRatio(TableMarginTop + 14))
     })
 
-    tableHeaderData.forEach(function (item, i) {
-      _this.ctx.font = _this.pixelRatio(22) + 'px Microsoft YaHei'
-      var rows = Math.ceil(item.length / num)
-
-      if (rows > 1) {
-        _this.ctx.font = _this.pixelRatio(16) + 'px Microsoft YaHei'
-        _this.ctx.textBaseline = 'middle'
-        for (var j = 0; j < rows; j++) {
-          _this.ctx.fillStyle = '#000'
-          _this.ctx.fillText(item.substr(num * j, 8), _this.pixelRatio(100 * i + 50), _this.pixelRatio(150 + j * 24), _this.pixelRatio(100))
-        }
-      } else {
-        _this.ctx.fillStyle = '#000'
-        _this.ctx.textBaseline = 'middle'
-        _this.ctx.fillText(item, _this.pixelRatio(100 * i + 50), _this.pixelRatio(120 + height / 2), _this.pixelRatio(100))
-      }
-    })
-    return height
+    return tableHeaderData.length * height + 60
   }
 
   drawTable(height) {
@@ -106,11 +100,11 @@ export default class DrawTable {
       } else {
         ctx.fillStyle = '#fffffa'
       }
-      ctx.fillRect(this.pixelRatio(10), this.pixelRatio(top), canvas.width - this.pixelRatio(20), this.pixelRatio(60))
+      ctx.fillRect(0, this.pixelRatio(top), canvas.width - this.pixelRatio(20), this.pixelRatio(60))
       ctx.font = this.pixelRatio(20) + 'px Microsoft YaHei'
       ctx.fillStyle = '#000'
       ctx.textAlign = 'center'
-      ctx.fillText((i + 1), this.pixelRatio(50), this.pixelRatio(top + 46))
+      ctx.fillText((i + 1), this.pixelRatio(40), this.pixelRatio(top + 46))
       ctx.fillText(data[i].name, this.pixelRatio(100 + 50), this.pixelRatio(top + 46), this.pixelRatio(100))
       let score = data[i].submitList
       var scoreLen = 0
@@ -134,14 +128,6 @@ export default class DrawTable {
       ctx.fillStyle = '#000'
       ctx.fillText(data[i].totalScore ? data[i].totalScore : 0, this.pixelRatio(100 * (scoreLen + 2) + 50), this.pixelRatio(top + 46))
     }
-    ctx.beginPath()
-    ctx.strokeStyle = '#f8f8f8'
-    ctx.lineWidth = this.pixelRatio(1)
-    ctx.strokeRect(this.pixelRatio(10),
-      this.pixelRatio(120 + height),
-      canvas.width - this.pixelRatio(20),
-      canvas.height - this.pixelRatio(20 + 120 + height))
-    ctx.save()
   }
 
   arraySortFun(data) {
@@ -183,7 +169,14 @@ export default class DrawTable {
 
   convertCanvasToImage(cb) {
     let canvas = this.canvas;
-    let URL = canvas.toDataURL('image/jpeg', 1);
+    let newCanvas =  document.createElement('canvas')
+    let ctx = newCanvas.getContext('2d')
+    newCanvas.width = canvas.width + 20
+    newCanvas.height = canvas.height + 20
+    ctx.fillStyle = '#fff'
+    ctx.fillRect(0, 0, newCanvas.width, newCanvas.height)
+    ctx.drawImage(canvas, 10, 10, canvas.width, canvas.height)
+    let URL = newCanvas.toDataURL('image/jpeg', 1);
     cb(URL);
   }
 }
